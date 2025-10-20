@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import useGuestData from "@/hooks/use-guest-name";
 import Heading from "@/componets/heading";
 import Paragraph from "@/componets/paragraph";
@@ -9,7 +10,7 @@ import HeaderImage from "@/componets/header-image";
 import QuestionsAnswers from "@/componets/questions-answers";
 import ResponseCard from "@/componets/response-card";
 
-export default function Home() {
+function HomeContent() {
   const { guest, isReady } = useGuestData();
 
   if (!isReady) return null;
@@ -37,7 +38,7 @@ export default function Home() {
         abbiamo deciso di aprirti le porte di casa.
       </Paragraph>
       <Paragraph>
-        Sarà l’occasione per ripresentarci, raccontarti i nostri progetti futuri
+        Sarà l&apos;occasione per ripresentarci, raccontarti i nostri progetti futuri
         e brindare insieme a chi ha reso possibile tutto questo: anche{" "}
         <em>a te</em>.
       </Paragraph>
@@ -45,12 +46,12 @@ export default function Home() {
       <Spacer size={24} line point />
       <Heading component="h2">Sarà un viaggio di sapori</Heading>
       <Heading component="h3">
-        dall’<em>Alto Adige</em> alla <em>Sicilia</em>
+        dall&apos;<em>Alto Adige</em> alla <em>Sicilia</em>
       </Heading>
       <Spacer size={24} />
       <Paragraph>
         Verrai guidato in un curato percorso gastronomico che attraversa
-        l’Italia, unendo il carattere dell’Alto Adige ai profumi intensi della
+        l&apos;Italia, unendo il carattere dell&apos;Alto Adige ai profumi intensi della
         Sicilia.
       </Paragraph>
       <Paragraph>
@@ -74,5 +75,21 @@ export default function Home() {
         </Paragraph>
       </ResponseCard>
     </>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={
+      <div>
+        <Spacer size={48} />
+        <Heading component="h1">Carissimo ospite,</Heading>
+        <Heading component="h3">abbiamo pensato a questo evento <em>per te</em>.</Heading>
+        <Spacer size={48} />
+        <div>Loading...</div>
+      </div>
+    }>
+      <HomeContent />
+    </Suspense>
   );
 }

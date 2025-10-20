@@ -1,3 +1,4 @@
+// hooks/use-guest-name.tsx
 "use client";
 
 import { useSearchParams } from "next/navigation";
@@ -17,6 +18,7 @@ export default function useGuestData() {
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
+    // This will only run on the client side
     const urlName = searchParams.get("name");
     const urlEmail = searchParams.get("email");
 

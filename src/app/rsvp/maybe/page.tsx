@@ -1,11 +1,12 @@
 "use client";
 
+import { Suspense } from "react";
 import useGuestData from "@/hooks/use-guest-name";
 import Heading from "@/componets/heading";
 import Paragraph from "@/componets/paragraph";
 import Spacer from "@/componets/spacer";
 
-export default function MaybePage() {
+function MaybeContent() {
   const { guest, isReady } = useGuestData();
 
   if (!isReady) return null;
@@ -25,7 +26,7 @@ export default function MaybePage() {
       </Heading>
       <Spacer size={48} />
       <Paragraph>
-        Non c’è problema, prenditi tutto il tempo che ti serve.  
+        Non c&apos;è problema, prenditi tutto il tempo che ti serve.  
         Quando deciderai, potrai aggiornare la tua partecipazione.
       </Paragraph>
       <Paragraph>
@@ -33,5 +34,21 @@ export default function MaybePage() {
       </Paragraph>
       <Spacer size={48} />
     </>
+  );
+}
+
+export default function MaybePage() {
+  return (
+    <Suspense fallback={
+      <div>
+        <Spacer size={48} />
+        <Heading component="h1">Ci penseremo insieme,</Heading>
+        <Heading component="h3">La tua risposta non è ancora confermata</Heading>
+        <Spacer size={48} />
+        <div>Loading...</div>
+      </div>
+    }>
+      <MaybeContent />
+    </Suspense>
   );
 }

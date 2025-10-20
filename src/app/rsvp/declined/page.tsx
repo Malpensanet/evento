@@ -1,11 +1,12 @@
 "use client";
 
+import { Suspense } from "react";
 import useGuestData from "@/hooks/use-guest-name";
 import Heading from "@/componets/heading";
 import Paragraph from "@/componets/paragraph";
 import Spacer from "@/componets/spacer";
 
-export default function DeclinedPage() {
+function DeclinedContent() {
   const { guest, isReady } = useGuestData();
 
   if (!isReady) return null;
@@ -32,5 +33,21 @@ export default function DeclinedPage() {
       </Paragraph>
       <Spacer size={48} />
     </>
+  );
+}
+
+export default function DeclinedPage() {
+  return (
+    <Suspense fallback={
+      <div>
+        <Spacer size={48} />
+        <Heading component="h1">Peccato,</Heading>
+        <Heading component="h3">non potrai essere dei nostri</Heading>
+        <Spacer size={48} />
+        <div>Loading...</div>
+      </div>
+    }>
+      <DeclinedContent />
+    </Suspense>
   );
 }

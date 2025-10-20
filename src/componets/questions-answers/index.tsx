@@ -5,9 +5,9 @@ import Spacer from "../spacer";
 
 const faqs = [
   {
-    question: "Quando si terrà l’evento?",
+    question: "Quando si terrà questo evento?",
     answer:
-      "L’evento avrà luogo giovedì 27 novembre 2025,e potrai accedere liberamente dalle ore 18:00 alle 22:00.",
+      "Questo evento avrà luogo giovedì 27 novembre 2025,e potrai accedere liberamente dalle ore 18:00 alle 22:00.",
   },
   {
     question: "Dove si svolge?",
@@ -20,7 +20,7 @@ const AnswersQuestions = () => {
   return (
     <div>
         <Heading component="h2">
-          Dettagli dell'evento
+          Dettagli
         </Heading>
         <Spacer size={24} />
         <Container scope="sm">

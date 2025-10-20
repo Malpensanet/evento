@@ -71,7 +71,8 @@ export async function POST(req: Request) {
       try {
         result = JSON.parse(responseText);
         console.log('✅ Successo Brevo:', result);
-      } catch (parseError) {
+      } catch {
+        // Removed unused parseError variable
         console.log('📝 Brevo returned empty or non-JSON response (this is normal for some operations)');
         result = { success: true, message: "Contact updated successfully" };
       }
@@ -86,10 +87,12 @@ export async function POST(req: Request) {
       timestamp: formattedDate // Restituisci anche il timestamp per debug
     });
     
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error('❌ Errore API:', err);
+    const errorMessage = err instanceof Error ? err.message : "Internal server error";
+    
     return NextResponse.json({ 
-      error: err.message || "Internal server error",
+      error: errorMessage,
       details: "Check server logs for more information"
     }, { status: 500 });
   }
