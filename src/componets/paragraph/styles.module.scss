@@ -1,0 +1,23 @@
+.paragraph {
+  font-size: clamp(var(--min-font-size), var(--preferred-font-size), var(--max-font-size));
+  padding-inline: 24px;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+
+  & > strong {
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--color-primary-500);
+  }
+
+  & > em {
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--color-primary-500);
+  }
+}
+
+.paragraphSmall {
+  font-size: clamp(var(--min-font-size-sm), var(--preferred-font-size-sm), var(--max-font-size-sm));
+  line-height: 1.6;
+}

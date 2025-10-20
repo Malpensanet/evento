@@ -1,0 +1,34 @@
+@use "./mixins" as *;
+@use "./breakpoints" as *;
+@use "./colors" as *;
+@use "sass:map";
+
+// ---------------------------
+// Global CSS Variables
+// ---------------------------
+
+$font-serif: "arno-pro", Georgia, serif;
+
+// ---------------------------
+// Responsive Typography
+// ---------------------------
+
+$sm-type-scale: 1.1;
+$sm-min-font-size: 20px;
+$sm-max-font-size: 22px;
+$sm-preferred-font-size: calc(20 / 768 * 100vw);
+
+$md-type-scale: 1.15;
+$md-min-font-size: 18px;
+$md-max-font-size: 20px;
+$md-preferred-font-size: calc(20 / 1440 * 100vw);
+
+$lg-type-scale: 1.4;
+$lg-min-font-size: 19px;
+$lg-max-font-size: 22px;
+$lg-preferred-font-size: calc(20 / 1440 * 100vw * 1.5);
+
+$xl-type-scale: 1.25;
+$xl-min-font-size: 20px;
+$xl-max-font-size: 24px;
+$xl-preferred-font-size: calc(20 / 1440 * 100vw);

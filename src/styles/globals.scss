@@ -1,0 +1,109 @@
+@use "./partials/reset";
+@use "./partials/typography" as *;
+@use "./partials/colors" as *;
+@use "./partials/mixins" as *;
+@use "./partials/sizes" as *;
+@use "sass:map";
+
+:root {
+  --margin-container: 2rem;
+
+  --min-font-size: #{$sm-min-font-size};
+  --max-font-size: #{$sm-max-font-size};
+  --type-scale: #{$sm-type-scale};
+  --preferred-font-size: #{$sm-preferred-font-size};
+
+  --font-serif: #{$font-serif};
+
+  --color-primary-500: #{$color-primary-500};
+
+  --color-shadow: #333;
+
+  --spacer-line-color: rgba(0, 0, 0, 0.25);
+  --spacer-line-thickness: 1px;
+  --spacer-point-size: 36px;
+  --spacer-point-margin: 16px;
+  --font-color-disabled: rgba(0, 0, 0, 0.25);
+  --border-radius: 8px;
+
+  --min-font-size-sm: 0.875rem;
+  --preferred-font-size-sm: 2vw;
+  --max-font-size-sm: 1.25rem;
+}
+
+@include respond(md) {
+  :root {
+    --margin-container: 3rem;
+    --type-scale: #{$md-type-scale};
+    --min-font-size: #{$md-min-font-size};
+    --max-font-size: #{$md-max-font-size};
+    --preferred-font-size: #{$md-preferred-font-size};
+  }
+}
+
+@include respond(lg) {
+  :root {
+    --margin-container: 3rem;
+    --type-scale: #{$lg-type-scale};
+    --min-font-size: #{$lg-min-font-size};
+    --max-font-size: #{$lg-max-font-size};
+    --preferred-font-size: #{$lg-preferred-font-size};
+  }
+}
+
+@include respond(xl) {
+  :root {
+    --margin-container: 4rem;
+    --type-scale: #{$xl-type-scale};
+    --min-font-size: #{$xl-min-font-size};
+    --max-font-size: #{$xl-max-font-size};
+    --preferred-font-size: #{$xl-preferred-font-size};
+  }
+}
+
+body {
+  overflow-x: hidden;
+  background-color: $color-background;
+  font-family: $font-serif;
+  color: $color-text-primary;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.transitionAwareLink {
+  text-decoration: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+a {
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+em {
+  font-style: italic;
+  font-size: inherit;
+  color: var(--color-primary-500);
+}

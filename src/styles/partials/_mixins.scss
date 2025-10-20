@@ -1,0 +1,22 @@
+@use "breakpoints" as *;
+@use "sass:map";
+
+/// Mixin per media queries responsive
+/// @param {string} $key - chiave nel map $breakpoints (sm, md, lg, xl)
+/// @param {string} $type - "min" o "max" (default: min)
+
+@mixin respond($key, $type: min) {
+  @if map.has-key($breakpoints, $key) {
+    $value: map.get($breakpoints, $key);
+
+    @media (#{$type}-width: #{$value}) {
+      @content;
+    }
+  } @else {
+    @warn "⚠️ Il breakpoint `#{$key}` non esiste in $breakpoints.";
+  }
+}
+
+@mixin bDebug($color) {
+  border: 1px solid $color;
+}

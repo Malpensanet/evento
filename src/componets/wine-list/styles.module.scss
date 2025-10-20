@@ -1,0 +1,44 @@
+@use "../../styles/partials/mixins" as *;
+
+.wineList {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem 0 2rem;
+}
+
+.wineItem {
+  text-align: center;
+  font-size: clamp(
+    var(--min-font-size),
+    var(--preferred-font-size),
+    var(--max-font-size)
+  );
+  color: var(--font-color-primary);
+  position: relative;
+
+  & > strong {
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--color-primary-500);
+    display: block;
+  }
+
+  & > em {
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--font-color-primary);
+  }
+}
+
+@include respond(md) {
+  .wineItem {
+    font-size: clamp(
+      var(--min-font-size),
+      var(--preferred-font-size),
+      var(--max-font-size)
+    );
+  }
+}

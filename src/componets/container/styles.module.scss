@@ -1,0 +1,84 @@
+@use "../../styles/partials/mixins" as *;
+
+.outerWrapper {
+  width: 100%;
+}
+
+.container {
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Scope classes - mobile first */
+.sm {
+  max-width: calc(100% - 24px);
+}
+
+.default {
+  max-width: calc(100% - 24px);
+}
+
+.lg {
+  max-width: calc(100% - 8px);
+}
+
+.fullWidth {
+  max-width: 100%;
+}
+
+/* Breakpoint ≥ 768px */
+@include respond(sm) {
+  .sm {
+    max-width: clamp(
+      calc(640px - (var(--margin-container) * 2)),
+      calc(50% - (var(--margin-container) * 2)),
+      calc(40rem - (var(--margin-container) * 2))
+    );
+  }
+
+  .default {
+    max-width: clamp(540px, 40%, 70rem);
+  }
+
+  .lg {
+    max-width: clamp(
+      calc(480px + (var(--margin-container) * 2)),
+      calc(50% + (var(--margin-container) * 2)),
+      calc(40rem + (var(--margin-container) * 2))
+    );
+  }
+}
+
+/* Breakpoint ≥ 1024px */
+@media (min-width: 1024px) {
+  .lg {
+    max-width: clamp(
+      calc(480px + (var(--margin-container) * 2.5)),
+      calc(50% + (var(--margin-container) * 2.5)),
+      calc(50rem + (var(--margin-container) * 2.5))
+    );
+  }
+}
+
+/* Breakpoint ≥ 1280px */
+@media (min-width: 1280px) {
+  .sm {
+    max-width: clamp(
+      calc(480px - (var(--margin-container) * 2)),
+      calc(50% - (var(--margin-container) * 2)),
+      calc(40rem - (var(--margin-container) * 2))
+    );
+  }
+
+  .default {
+    max-width: clamp(480px, 50%, 40rem);
+  }
+
+  .lg {
+    max-width: clamp(
+      calc(480px + (var(--margin-container) * 3)),
+      calc(50% + (var(--margin-container) * 3)),
+      calc(40rem + (var(--margin-container) * 3))
+    );
+  }
+}

@@ -1,0 +1,74 @@
+@use "../../styles/partials/mixins" as *;
+@use "sass:math";
+
+.spacer {
+  width: 100%;
+
+  // Generate spacer sizes programmatically
+  @each $size in 8, 16, 24, 32, 40, 48, 64, 80, 96, 128, 240 {
+    &--#{$size} {
+      padding: #{math.div($size, 2)}px 0;
+    }
+  }
+}
+
+// Line wrapper for consistent alignment
+.lineWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto;
+  padding-inline: 24px;
+}
+
+// Line styles with variants
+.line {
+  flex: 1;
+  height: var(--spacer-line-thickness);
+  background-color: var(--spacer-line-color);
+
+  &--default {
+    background-color: var(--font-color-disabled);
+  }
+
+  &--thick {
+    height: 2px;
+    background-color: var(--font-color-primary);
+  }
+
+  &--dotted {
+    height: var(--spacer-line-thickness);
+    background: none;
+    border-top: var(--spacer-line-thickness) dotted var(--font-color-secondary);
+  }
+
+  &--dashed {
+    height: var(--spacer-line-thickness);
+    background: none;
+    border-top: var(--spacer-line-thickness) dashed var(--font-color-secondary);
+  }
+}
+
+// Center point
+.point {
+  width: var(--spacer-point-size);
+  height: var(--spacer-point-size);
+  border-radius: 50%;
+  background-color: var(--spacer-point-color);
+  margin-inline: 1rem;
+  flex-shrink: 0;
+  background-image: url("/fleuron.svg");
+}
+
+@include respond(md) {
+  .lineWrapper {
+    padding: 12px 0;
+    max-width: calc(100% - 2rem);
+  }
+
+  .point {
+    --spacer-point-margin: 12px;
+    --spacer-point-size: 36px;
+  }
+}

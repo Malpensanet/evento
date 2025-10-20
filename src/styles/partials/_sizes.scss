@@ -1,0 +1,13 @@
+@use "./mixins" as *;
+
+:root {
+  $margin-container: 2rem;
+
+  @include respond(md) {
+    $margin-container: 3rem;
+  }
+
+  @include respond(xl) {
+    $margin-container: 4rem;
+  }
+}
