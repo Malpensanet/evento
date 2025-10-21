@@ -23,7 +23,7 @@ function HomeContent() {
     <>
       <Spacer size={48} />
       <Heading component="h1">
-        {name ? `Carissimo ${name},` : "Carissimo ospite,"}
+        {name ? `${name},` : "Carissimo ospite,"}
       </Heading>
       <Heading component="h3">
         abbiamo pensato a questo evento <em>per te</em>.

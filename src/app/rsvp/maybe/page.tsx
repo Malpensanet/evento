@@ -23,8 +23,8 @@ function MaybeContent() {
         <Container className="centerd">
           <div className="centered">
             <Image
-              src={"/declined.webp"}
-              alt="Felici che tu ci sia"
+              src={"/maybe.webp"}
+              alt="Dimmi quando quando quando"
               width={540}
               height={540}
             />
