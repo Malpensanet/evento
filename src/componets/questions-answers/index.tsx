@@ -12,7 +12,7 @@ const faqs = [
   {
     question: "Dove si svolge?",
     answer:
-      "Presso la nostra nuova sede sirezionale, in via Palmanova 19 a Olgiate Olona.",
+      "Presso la nostra nuova sede direzionale, in via Palmanova 19 a Olgiate Olona.",
   }
 ];
 

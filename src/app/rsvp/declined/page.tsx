@@ -5,6 +5,8 @@ import useGuestData from "@/hooks/use-guest-name";
 import Heading from "@/componets/heading";
 import Paragraph from "@/componets/paragraph";
 import Spacer from "@/componets/spacer";
+import Image from "next/image";
+import Container from "@/componets/container";
 
 function DeclinedContent() {
   const { guest, isReady } = useGuestData();
@@ -17,18 +19,27 @@ function DeclinedContent() {
 
   return (
     <>
+      <Spacer size={32} />
+        <Container className="centerd">
+          <div className="centered">
+            <Image
+              src={"/declined.webp"}
+              alt="Felici che tu ci sia"
+              width={540}
+              height={540}
+            />
+          </div>
+        </Container>
       <Spacer size={48} />
       <Heading component="h1">
         {name ? `Peccato ${name},` : "Peccato,"}
       </Heading>
       <Heading component="h3">
-        non potrai essere dei nostri
+        non potrai essere dei nostri.
       </Heading>
-      <Spacer size={48} />
+      <Spacer size={48} line point />
       <Paragraph>
         Ci dispiace molto, ma speriamo di poterti avere con noi in futuro.
-      </Paragraph>
-      <Paragraph>
         Ti terremo aggiornato sui prossimi eventi e iniziative.
       </Paragraph>
       <Spacer size={48} />

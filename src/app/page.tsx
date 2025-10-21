@@ -69,7 +69,7 @@ function HomeContent() {
       {/* ResponseCard aggiornata gestisce API call + redirect */}
       <ResponseCard>
         <Spacer size={24} />
-        <Paragraph size="small">
+        <Paragraph size="small" scope="lg">
           Averti con noi sarebbe il nostro più grande piacere.
           Per ragioni organizzative è importante per noi una conferma della tua presenza al fine di offrire la migliore esperienza possibile.
         </Paragraph>

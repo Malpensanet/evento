@@ -5,6 +5,8 @@ import useGuestData from "@/hooks/use-guest-name";
 import Heading from "@/componets/heading";
 import Paragraph from "@/componets/paragraph";
 import Spacer from "@/componets/spacer";
+import Image from "next/image";
+import Container from "@/componets/container";
 
 function MaybeContent() {
   const { guest, isReady } = useGuestData();
@@ -17,19 +19,28 @@ function MaybeContent() {
 
   return (
     <>
-      <Spacer size={48} />
+      <Spacer size={32} />
+        <Container className="centerd">
+          <div className="centered">
+            <Image
+              src={"/declined.webp"}
+              alt="Felici che tu ci sia"
+              width={540}
+              height={540}
+            />
+          </div>
+        </Container>
+      <Spacer size={32} />
       <Heading component="h1">
         {name ? `Ci penseremo insieme, ${name}` : "Ci penseremo insieme,"}
       </Heading>
       <Heading component="h3">
         La tua risposta non è ancora confermata
       </Heading>
-      <Spacer size={48} />
+      <Spacer size={48} line point />
       <Paragraph>
-        Non c&apos;è problema, prenditi tutto il tempo che ti serve.  
+        Non c&apos;è problema, prenditi il tempo che ti serve.  
         Quando deciderai, potrai aggiornare la tua partecipazione.
-      </Paragraph>
-      <Paragraph>
         Ti aspettiamo con piacere, sperando di averti tra i nostri ospiti.
       </Paragraph>
       <Spacer size={48} />
