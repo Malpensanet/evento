@@ -60,7 +60,7 @@ const ResponseCard = ({
 
     try {
       // Chiamata API server-side per aggiornare Brevo usando solo l'email
-      const apiResponse = await fetch('/api/update-brevo-contact-v', {
+      const apiResponse = await fetch('/api/update-brevo-contact-v2', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -121,9 +121,6 @@ const ResponseCard = ({
             <>
               <div className={styles.content}>
                 {children}
-                <div style={{ fontSize: '12px', color: '#666', marginTop: '10px' }}>
-                  Debug: {guest.name} - {guest.email}
-                </div>
               </div>
 
               <button 

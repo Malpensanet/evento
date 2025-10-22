@@ -10,16 +10,17 @@ export async function POST(req: Request) {
 
     // Environment variables check
     const brevoApiKey = process.env.BREVO_API_KEY;
+    const brevoListId = process.env.BREVO_LIST_ID; // Lista di partenza #11
     
-    if (!brevoApiKey) {
-      console.error('❌ Missing Brevo API key');
+    if (!brevoApiKey || !brevoListId) {
+      console.error('❌ Missing Brevo environment variables');
       return NextResponse.json({ error: "Server configuration error" }, { status: 500 });
     }
 
     console.log('📧 Email received:', email);
     console.log('🎯 Event state:', eventState);
 
-    // Mappa gli stati dell'evento alle liste corrispondenti
+    // Mappa gli stati dell'evento alle liste corrispondenti (case insensitive)
     const eventStateToList: Record<string, number> = {
       'accepted': 8,
       'declined': 6,
@@ -30,7 +31,7 @@ export async function POST(req: Request) {
       'Maybe': 5
     };
 
-    // Normalizza lo stato
+    // Normalizza lo stato to lowercase per evitare problemi di case sensitivity
     const normalizedState = eventState.toLowerCase();
     const targetListId = eventStateToList[eventState] || eventStateToList[normalizedState];
     
@@ -43,61 +44,35 @@ export async function POST(req: Request) {
     }
 
     console.log('🎯 Target list ID:', targetListId);
+    console.log('🚪 Source list ID:', brevoListId);
 
-    // PRIMA: Ottieni le informazioni attuali del contatto per sapere in quale lista si trova
-    const encodedEmail = encodeURIComponent(email);
-    const getContactUrl = `https://api.brevo.com/v3/contacts/${encodedEmail}`;
-    
-    console.log('🔍 Getting current contact info...');
-    const getContactRes = await fetch(getContactUrl, {
-      method: "GET",
-      headers: {
-        "api-key": brevoApiKey,
-      },
-    });
+    // Ottieni la data e ora corrente nel formato richiesto da Brevo
+    const now = new Date();
+    const formattedDate = now.toISOString();
 
-    if (!getContactRes.ok) {
-      console.error('❌ Errore nel recupero contatto:', await getContactRes.text());
-      throw new Error(`Contact not found or API error: ${getContactRes.status}`);
-    }
-
-    const contactData = await getContactRes.json();
-    console.log('📋 Current contact data:', contactData);
-
-    // Ottieni le liste attuali del contatto
-    const currentListIds = contactData.listIds || [];
-    console.log('📋 Current list IDs:', currentListIds);
-
-    // Lista delle liste di evento (quelle che vogliamo gestire)
-    const eventListIds = [5, 6, 8]; // maybe, declined, accepted
-    
-    // Trova le liste di evento attuali (da rimuovere)
-    const currentEventLists = currentListIds.filter((id: number) => 
-      eventListIds.includes(id)
-    );
-
-    console.log('🗑️ Current event lists to remove:', currentEventLists);
-    console.log('🎯 New list to add:', targetListId);
+    console.log('📅 Current date/time:', formattedDate);
 
     // Prepara il body per Brevo
     const body = {
       email: email,
       attributes: { 
         EVENT_STATE: eventState,
-        DATE: new Date().toISOString()
+        DATE: formattedDate
       },
-      listIds: [targetListId], // Aggiungi alla nuova lista
-      unlinkListIds: currentEventLists, // Rimuovi da TUTTE le liste di evento precedenti
+      listIds: [targetListId], // Aggiungi alla lista di destinazione
+      unlinkListIds: [Number(brevoListId)], // Rimuovi solo dalla lista di partenza (#11)
       updateEnabled: true,
     };
 
+    // ENCODE the email for the URL
+    const encodedEmail = encodeURIComponent(email);
     const brevoUrl = `https://api.brevo.com/v3/contacts/${encodedEmail}`;
     
     console.log('🌐 Calling Brevo URL:', brevoUrl);
     console.log('📦 Request body:', JSON.stringify(body, null, 2));
 
-    // Aggiorna il contatto
-    const updateRes = await fetch(brevoUrl, {
+    // Chiama l'API di Brevo
+    const res = await fetch(brevoUrl, {
       method: "PUT",
       headers: {
         "api-key": brevoApiKey,
@@ -106,14 +81,16 @@ export async function POST(req: Request) {
       body: JSON.stringify(body),
     });
 
-    console.log('📊 Brevo response status:', updateRes.status);
+    console.log('📊 Brevo response status:', res.status);
+    console.log('📊 Brevo response ok:', res.ok);
 
-    const responseText = await updateRes.text();
+    // Check if response has content before trying to parse JSON
+    const responseText = await res.text();
     console.log('📥 Brevo raw response:', responseText);
 
-    if (!updateRes.ok) {
+    if (!res.ok) {
       console.error('❌ Errore Brevo:', responseText);
-      throw new Error(`Brevo API error: ${updateRes.status} - ${responseText}`);
+      throw new Error(`Brevo API error: ${res.status} - ${responseText}`);
     }
 
     let result;
@@ -122,20 +99,20 @@ export async function POST(req: Request) {
         result = JSON.parse(responseText);
         console.log('✅ Successo Brevo:', result);
       } catch {
-        console.log('📝 Brevo returned empty or non-JSON response');
+        console.log('📝 Brevo returned empty or non-JSON response (this is normal for some operations)');
         result = { success: true, message: "Contact updated successfully" };
       }
     } else {
-      console.log('✅ Brevo operation completed successfully');
+      console.log('✅ Brevo operation completed successfully (empty response)');
       result = { success: true, message: "Contact updated successfully" };
     }
     
     return NextResponse.json({ 
       success: true, 
       data: result,
-      previousLists: currentEventLists,
-      newList: targetListId,
-      timestamp: new Date().toISOString()
+      timestamp: formattedDate,
+      sourceListId: brevoListId, // Lista di partenza
+      targetListId: targetListId // Lista di destinazione
     });
     
   } catch (err: unknown) {
