@@ -107,3 +107,27 @@ em {
   font-size: inherit;
   color: var(--color-primary-500);
 }
+
+.subtitleItem {
+  text-align: center;
+  font-size: clamp(
+    var(--min-font-size),
+    var(--preferred-font-size),
+    var(--max-font-size)
+  );
+  color: var(--font-color-primary);
+  position: relative;
+
+  & > strong {
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--color-primary-500);
+    display: block;
+  }
+
+  & > em {
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--font-color-primary);
+  }
+}

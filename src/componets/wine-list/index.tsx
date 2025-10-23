@@ -5,7 +5,7 @@ import Image from "next/image";
 const WineList = () => {
   return (
     <ul className={styles.wineList}>
-      <li className={styles.wineItem}>
+      <li className={styles.wineItem} key="kurtatsch">
         <a
           href="https://www.kellerei-kurtatsch.it/it/"
           hrefLang="it"
@@ -28,7 +28,7 @@ const WineList = () => {
 
       <Spacer size={48} />
 
-      <li className={styles.wineItem}>
+      <li className={styles.wineItem} key="firriato">
         <a
           href="https://firriato.it/"
           hrefLang="it"

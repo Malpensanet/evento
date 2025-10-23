@@ -65,6 +65,8 @@
 .acceptButton {
   background: linear-gradient(135deg, #10b981, #059669);
   color: white;
+  padding-block: 16px;
+  font-size: 16px;
 
   &:hover:not(:disabled) {
     background: linear-gradient(135deg, #059669, #047857);
@@ -96,7 +98,7 @@
 
 .bottomButtons {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   @include respond(md) {
     flex-direction: row;
   }

@@ -5,14 +5,19 @@ import Spacer from "../spacer";
 
 const faqs = [
   {
-    question: "Quando si terrà questo evento?",
+    question: "Quando si terrà l'evento?",
     answer:
-      "Questo evento avrà luogo giovedì 27 novembre 2025,e potrai accedere liberamente dalle ore 18:00 alle 22:00.",
+      "L'evento avrà luogo giovedì 27 novembre 2025.",
   },
   {
     question: "Dove si svolge?",
     answer:
       "Presso la nostra nuova sede direzionale, in via Palmanova 19 a Olgiate Olona.",
+  },
+  {
+    question: "A che ora?",
+    answer:
+      "Potrai accedere liberamente dalle 18:00 alle 22:00 per tutto il tempo che vuoi.",
   },
 ];
 
