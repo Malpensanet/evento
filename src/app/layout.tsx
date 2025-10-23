@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/next";
 import "@/styles/globals.scss";
 import GoogleAnalytics from "@/componets/google-analytics";
 

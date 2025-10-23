@@ -1,5 +1,9 @@
 .paragraph {
-  font-size: clamp(var(--min-font-size), var(--preferred-font-size), var(--max-font-size));
+  font-size: clamp(
+    var(--min-font-size),
+    var(--preferred-font-size),
+    var(--max-font-size)
+  );
   padding-inline: 12px;
   line-height: 1.5;
   margin-bottom: 1rem;

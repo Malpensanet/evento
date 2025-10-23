@@ -8,7 +8,11 @@ interface ParagraphProps {
   size?: "default" | "small";
 }
 
-const Paragraph = ({ children, scope = "default", size = "default" }: ParagraphProps) => {
+const Paragraph = ({
+  children,
+  scope = "default",
+  size = "default",
+}: ParagraphProps) => {
   const paragraphClass = clsx(styles.paragraph, {
     [styles.paragraphSmall]: size === "small",
   });

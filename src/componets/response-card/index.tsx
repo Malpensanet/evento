@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
 import styles from "./styles.module.scss";
 import Container from "../container";
-import { useState, useEffect } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useState, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 interface ResponseCardProps {
   children: React.ReactNode;
@@ -15,10 +15,7 @@ interface GuestData {
   email: string | null;
 }
 
-const ResponseCard = ({ 
-  children, 
-  isLoading = false 
-}: ResponseCardProps) => {
+const ResponseCard = ({ children, isLoading = false }: ResponseCardProps) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isLoadingState, setIsLoadingState] = useState(isLoading);
@@ -43,16 +40,27 @@ const ResponseCard = ({
     setIsReady(true);
 
     // Debug log
-    console.log('Guest data loaded:', { name, email, urlName, urlEmail, savedName, savedEmail });
+    console.log("Guest data loaded:", {
+      name,
+      email,
+      urlName,
+      urlEmail,
+      savedName,
+      savedEmail,
+    });
   }, [searchParams]);
 
-  const handleResponse = async (response: 'accepted' | 'declined' | 'maybe') => {
+  const handleResponse = async (
+    response: "accepted" | "declined" | "maybe"
+  ) => {
     if (isLoadingState || !isReady) return;
 
     // Verifica che l'email sia presente
     if (!guest.email) {
-      console.error('Email non trovata:', guest);
-      alert('Impossibile procedere: email non trovata. Ricarica la pagina e riprova.');
+      console.error("Email non trovata:", guest);
+      alert(
+        "Impossibile procedere: email non trovata. Ricarica la pagina e riprova."
+      );
       return;
     }
 
@@ -60,33 +68,34 @@ const ResponseCard = ({
 
     try {
       // Chiamata API server-side per aggiornare Brevo usando solo l'email
-      const apiResponse = await fetch('/api/update-brevo-contact-v2', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const apiResponse = await fetch("/api/update-brevo-contact-v2", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email: guest.email,
-          eventState: response.charAt(0).toUpperCase() + response.slice(1) // Accepted / Declined / Maybe
-        })
+          eventState: response.charAt(0).toUpperCase() + response.slice(1), // Accepted / Declined / Maybe
+        }),
       });
 
       if (!apiResponse.ok) {
         const errorData = await apiResponse.json();
-        throw new Error(`Errore ${apiResponse.status}: ${errorData.message || 'Errore sconosciuto'}`);
+        throw new Error(
+          `Errore ${apiResponse.status}: ${errorData.message || "Errore sconosciuto"}`
+        );
       }
 
       const result = await apiResponse.json();
-      console.log('Risposta Brevo:', result);
+      console.log("Risposta Brevo:", result);
 
       // Redirect automatico alla pagina corrispondente
-      const query = new URLSearchParams({ 
-        name: guest.name || '', 
-        email: guest.email 
+      const query = new URLSearchParams({
+        name: guest.name || "",
+        email: guest.email,
       }).toString();
       router.push(`/rsvp/${response}?${query}`);
-
     } catch (err) {
-      console.error('Errore aggiornando Brevo:', err);
-      alert('Si è verificato un errore. Riprova più tardi.');
+      console.error("Errore aggiornando Brevo:", err);
+      alert("Si è verificato un errore. Riprova più tardi.");
       setIsLoadingState(false);
     }
   };
@@ -110,8 +119,9 @@ const ResponseCard = ({
   return (
     <Container>
       <div className={styles.outerWrapper}>
-        <div className={`${styles.innerWrapper} ${isLoadingState ? styles.loading : ''}`}>
-          
+        <div
+          className={`${styles.innerWrapper} ${isLoadingState ? styles.loading : ""}`}
+        >
           {isLoadingState ? (
             <div className={styles.loadingState}>
               <div className={styles.loadingSpinner}></div>
@@ -119,13 +129,11 @@ const ResponseCard = ({
             </div>
           ) : (
             <>
-              <div className={styles.content}>
-                {children}
-              </div>
+              <div className={styles.content}>{children}</div>
 
-              <button 
+              <button
                 className={`${styles.button} ${styles.acceptButton}`}
-                onClick={() => handleResponse('accepted')}
+                onClick={() => handleResponse("accepted")}
                 disabled={isLoadingState}
               >
                 <span className={styles.buttonIcon}>✓</span>
@@ -133,18 +141,18 @@ const ResponseCard = ({
               </button>
 
               <div className={styles.bottomButtons}>
-                <button 
+                <button
                   className={`${styles.button} ${styles.declineButton}`}
-                  onClick={() => handleResponse('declined')}
+                  onClick={() => handleResponse("declined")}
                   disabled={isLoadingState}
                 >
                   <span className={styles.buttonIcon}>✕</span>
                   No, non potrò esserci
                 </button>
 
-                <button 
+                <button
                   className={`${styles.button} ${styles.maybeButton}`}
-                  onClick={() => handleResponse('maybe')}
+                  onClick={() => handleResponse("maybe")}
                   disabled={isLoadingState}
                 >
                   <span className={styles.buttonIcon}>?</span>
@@ -157,6 +165,6 @@ const ResponseCard = ({
       </div>
     </Container>
   );
-}
+};
 
 export default ResponseCard;

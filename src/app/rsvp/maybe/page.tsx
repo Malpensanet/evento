@@ -20,28 +20,26 @@ function MaybeContent() {
   return (
     <>
       <Spacer size={32} />
-        <Container className="centerd">
-          <div className="centered">
-            <Image
-              src={"/maybe.webp"}
-              alt="Dimmi quando quando quando"
-              width={540}
-              height={540}
-            />
-          </div>
-        </Container>
+      <Container className="centerd">
+        <div className="centered">
+          <Image
+            src={"/maybe.webp"}
+            alt="Dimmi quando quando quando"
+            width={540}
+            height={540}
+          />
+        </div>
+      </Container>
       <Spacer size={32} />
       <Heading component="h1">
         {name ? `Ci penseremo insieme, ${name}` : "Ci penseremo insieme,"}
       </Heading>
-      <Heading component="h3">
-        La tua risposta non è ancora confermata
-      </Heading>
+      <Heading component="h3">La tua risposta non è ancora confermata</Heading>
       <Spacer size={48} line point />
       <Paragraph>
-        Non c&apos;è problema, prenditi il tempo che ti serve.  
-        Quando deciderai, potrai aggiornare la tua partecipazione.
-        Ti aspettiamo con piacere, sperando di averti tra i nostri ospiti.
+        Non c&apos;è problema, prenditi il tempo che ti serve. Quando deciderai,
+        potrai aggiornare la tua partecipazione. Ti aspettiamo con piacere,
+        sperando di averti tra i nostri ospiti.
       </Paragraph>
       <Spacer size={48} />
     </>
@@ -50,15 +48,19 @@ function MaybeContent() {
 
 export default function MaybePage() {
   return (
-    <Suspense fallback={
-      <div>
-        <Spacer size={48} />
-        <Heading component="h1">Ci penseremo insieme,</Heading>
-        <Heading component="h3">La tua risposta non è ancora confermata</Heading>
-        <Spacer size={48} />
-        <div>Loading...</div>
-      </div>
-    }>
+    <Suspense
+      fallback={
+        <div>
+          <Spacer size={48} />
+          <Heading component="h1">Ci penseremo insieme,</Heading>
+          <Heading component="h3">
+            La tua risposta non è ancora confermata
+          </Heading>
+          <Spacer size={48} />
+          <div>Loading...</div>
+        </div>
+      }
+    >
       <MaybeContent />
     </Suspense>
   );

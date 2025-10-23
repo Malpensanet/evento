@@ -1,13 +1,13 @@
 @use "../../styles/partials/mixins" as *;
 
 .outerWrapper {
-  background-color: rgba(245, 245, 245, .75);
+  background-color: rgba(245, 245, 245, 0.75);
   border-radius: 12px;
   padding: 6px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   margin-bottom: 48px;
-  
+
   &:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }
@@ -21,10 +21,10 @@
   overflow: hidden;
   transition: all 0.3s ease;
   padding-inline: 2rem;
-  
+
   &.loading {
     border-color: var(--color-primary-500);
-    background-color: rgba(245, 245, 245, .1);
+    background-color: rgba(245, 245, 245, 0.1);
   }
 }
 
@@ -47,16 +47,16 @@
   transition: all 0.2s ease;
   margin: 8px;
   min-height: 44px;
-  
+
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
   }
-  
+
   &:hover:not(:disabled) {
     transform: translateY(-1px);
   }
-  
+
   &:active:not(:disabled) {
     transform: translateY(0);
   }
@@ -65,7 +65,7 @@
 .acceptButton {
   background: linear-gradient(135deg, #10b981, #059669);
   color: white;
-  
+
   &:hover:not(:disabled) {
     background: linear-gradient(135deg, #059669, #047857);
     box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
@@ -76,7 +76,7 @@
   background: linear-gradient(135deg, #ef4444, #dc2626);
   color: white;
   flex: 1;
-  
+
   &:hover:not(:disabled) {
     background: linear-gradient(135deg, #dc2626, #b91c1c);
     box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
@@ -87,7 +87,7 @@
   background: linear-gradient(135deg, #f59e0b, #d97706);
   color: white;
   flex: 1;
-  
+
   &:hover:not(:disabled) {
     background: linear-gradient(135deg, #d97706, #b45309);
     box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
@@ -97,7 +97,7 @@
 .bottomButtons {
   display: flex;
   flex-direction: column;
-  @include respond(md){
+  @include respond(md) {
     flex-direction: row;
   }
 }
@@ -126,6 +126,10 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

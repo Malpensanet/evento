@@ -5,34 +5,39 @@ export async function POST(req: Request) {
     const { email, eventState } = await req.json();
 
     if (!email) {
-      return NextResponse.json({ error: "Missing contact email" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Missing contact email" },
+        { status: 400 }
+      );
     }
 
     // Environment variables check
     const brevoApiKey = process.env.BREVO_API_KEY;
     const brevoListId = process.env.BREVO_LIST_ID;
-    
+
     if (!brevoApiKey || !brevoListId) {
-      console.error('❌ Missing Brevo environment variables');
-      return NextResponse.json({ error: "Server configuration error" }, { status: 500 });
+      console.error("❌ Missing Brevo environment variables");
+      return NextResponse.json(
+        { error: "Server configuration error" },
+        { status: 500 }
+      );
     }
 
-    console.log('📧 Email received:', email);
-    console.log('🎯 Event state:', eventState);
+    console.log("📧 Email received:", email);
+    console.log("🎯 Event state:", eventState);
 
     // Ottieni la data e ora corrente nel formato richiesto da Brevo
     const now = new Date();
     const formattedDate = now.toISOString(); // Formato: "2024-01-15T14:30:00.000Z"
-    
 
-    console.log('📅 Current date/time:', formattedDate);
+    console.log("📅 Current date/time:", formattedDate);
 
     // Prepara il body per Brevo
     const body = {
       email: email,
-      attributes: { 
+      attributes: {
         EVENT_STATE: eventState,
-        DATE: formattedDate
+        DATE: formattedDate,
       },
       listIds: [Number(brevoListId)],
       updateEnabled: true,
@@ -41,8 +46,8 @@ export async function POST(req: Request) {
     // ENCODE the email for the URL
     const encodedEmail = encodeURIComponent(email);
     const brevoUrl = `https://api.brevo.com/v3/contacts/${encodedEmail}`;
-    
-    console.log('🌐 Calling Brevo URL:', brevoUrl);
+
+    console.log("🌐 Calling Brevo URL:", brevoUrl);
 
     // Chiama l'API di Brevo
     const res = await fetch(brevoUrl, {
@@ -54,46 +59,51 @@ export async function POST(req: Request) {
       body: JSON.stringify(body),
     });
 
-    console.log('📊 Brevo response status:', res.status);
-    console.log('📊 Brevo response ok:', res.ok);
+    console.log("📊 Brevo response status:", res.status);
+    console.log("📊 Brevo response ok:", res.ok);
 
     // Check if response has content before trying to parse JSON
     const responseText = await res.text();
-    console.log('📥 Brevo raw response:', responseText);
+    console.log("📥 Brevo raw response:", responseText);
 
     if (!res.ok) {
-      console.error('❌ Errore Brevo:', responseText);
+      console.error("❌ Errore Brevo:", responseText);
       throw new Error(`Brevo API error: ${res.status} - ${responseText}`);
     }
 
     let result;
-    if (responseText && responseText.trim() !== '') {
+    if (responseText && responseText.trim() !== "") {
       try {
         result = JSON.parse(responseText);
-        console.log('✅ Successo Brevo:', result);
+        console.log("✅ Successo Brevo:", result);
       } catch {
         // Removed unused parseError variable
-        console.log('📝 Brevo returned empty or non-JSON response (this is normal for some operations)');
+        console.log(
+          "📝 Brevo returned empty or non-JSON response (this is normal for some operations)"
+        );
         result = { success: true, message: "Contact updated successfully" };
       }
     } else {
-      console.log('✅ Brevo operation completed successfully (empty response)');
+      console.log("✅ Brevo operation completed successfully (empty response)");
       result = { success: true, message: "Contact updated successfully" };
     }
-    
-    return NextResponse.json({ 
-      success: true, 
+
+    return NextResponse.json({
+      success: true,
       data: result,
-      timestamp: formattedDate // Restituisci anche il timestamp per debug
+      timestamp: formattedDate, // Restituisci anche il timestamp per debug
     });
-    
   } catch (err: unknown) {
-    console.error('❌ Errore API:', err);
-    const errorMessage = err instanceof Error ? err.message : "Internal server error";
-    
-    return NextResponse.json({ 
-      error: errorMessage,
-      details: "Check server logs for more information"
-    }, { status: 500 });
+    console.error("❌ Errore API:", err);
+    const errorMessage =
+      err instanceof Error ? err.message : "Internal server error";
+
+    return NextResponse.json(
+      {
+        error: errorMessage,
+        details: "Check server logs for more information",
+      },
+      { status: 500 }
+    );
   }
 }

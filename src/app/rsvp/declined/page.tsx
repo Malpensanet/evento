@@ -20,27 +20,23 @@ function DeclinedContent() {
   return (
     <>
       <Spacer size={32} />
-        <Container className="centerd">
-          <div className="centered">
-            <Image
-              src={"/declined.webp"}
-              alt="Felici che tu ci sia"
-              width={540}
-              height={540}
-            />
-          </div>
-        </Container>
+      <Container className="centerd">
+        <div className="centered">
+          <Image
+            src={"/declined.webp"}
+            alt="Felici che tu ci sia"
+            width={540}
+            height={540}
+          />
+        </div>
+      </Container>
       <Spacer size={48} />
-      <Heading component="h1">
-        {name ? `Peccato ${name},` : "Peccato,"}
-      </Heading>
-      <Heading component="h3">
-        non potrai essere dei nostri.
-      </Heading>
+      <Heading component="h1">{name ? `Peccato ${name},` : "Peccato,"}</Heading>
+      <Heading component="h3">non potrai essere dei nostri.</Heading>
       <Spacer size={48} line point />
       <Paragraph>
-        Ci dispiace molto, ma speriamo di poterti avere con noi in futuro.
-        Ti terremo aggiornato sui prossimi eventi e iniziative.
+        Ci dispiace molto, ma speriamo di poterti avere con noi in futuro. Ti
+        terremo aggiornato sui prossimi eventi e iniziative.
       </Paragraph>
       <Spacer size={48} />
     </>
@@ -49,15 +45,17 @@ function DeclinedContent() {
 
 export default function DeclinedPage() {
   return (
-    <Suspense fallback={
-      <div>
-        <Spacer size={48} />
-        <Heading component="h1">Peccato,</Heading>
-        <Heading component="h3">non potrai essere dei nostri</Heading>
-        <Spacer size={48} />
-        <div>Loading...</div>
-      </div>
-    }>
+    <Suspense
+      fallback={
+        <div>
+          <Spacer size={48} />
+          <Heading component="h1">Peccato,</Heading>
+          <Heading component="h3">non potrai essere dei nostri</Heading>
+          <Spacer size={48} />
+          <div>Loading...</div>
+        </div>
+      }
+    >
       <DeclinedContent />
     </Suspense>
   );

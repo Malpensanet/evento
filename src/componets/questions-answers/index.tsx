@@ -13,25 +13,23 @@ const faqs = [
     question: "Dove si svolge?",
     answer:
       "Presso la nostra nuova sede direzionale, in via Palmanova 19 a Olgiate Olona.",
-  }
+  },
 ];
 
 const AnswersQuestions = () => {
   return (
     <div>
-        <Heading component="h2">
-          Dettagli
-        </Heading>
-        <Spacer size={24} />
-        <Container scope="sm">
-          <ul className={styles.faqList}>
-            {faqs.map((faq, index) => (
-              <li key={index} className={styles.faqItem}>
-                <p className={styles.question}>{faq.question}</p>
-                <p className={styles.answer}>{faq.answer}</p>
-              </li>
-            ))}
-          </ul>
+      <Heading component="h2">Dettagli</Heading>
+      <Spacer size={24} />
+      <Container scope="sm">
+        <ul className={styles.faqList}>
+          {faqs.map((faq, index) => (
+            <li key={index} className={styles.faqItem}>
+              <p className={styles.question}>{faq.question}</p>
+              <p className={styles.answer}>{faq.answer}</p>
+            </li>
+          ))}
+        </ul>
       </Container>
     </div>
   );
