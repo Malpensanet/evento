@@ -9,6 +9,8 @@ import WineList from "@/componets/wine-list";
 import HeaderImage from "@/componets/header-image";
 import QuestionsAnswers from "@/componets/questions-answers";
 import ResponseCard from "@/componets/response-card";
+import Image from "next/image";
+import Container from "@/componets/container";
 
 function HomeContent() {
   const { guest, isReady } = useGuestData();
@@ -29,12 +31,10 @@ function HomeContent() {
         abbiamo pensato a questo evento <em>per te</em>.
       </Heading>
       <Spacer size={48} />
-      <HeaderImage />
-      <Spacer size={48} />
       <Paragraph>
-        Sono passati 25 anni da quando è iniziato il nostro cammino — fatto di
+        Sono passati <em>25 anni</em> da quando è iniziato il nostro cammino — fatto di
         fiducia, collaborazione e relazioni sincere. Per celebrare questo
-        importante traguardo e inaugurare la nostra nuova sede direzionale,
+        importante traguardo e inaugurare la nostra <em>nuova sede direzionale</em>,
         abbiamo deciso di aprirti le porte di casa.
       </Paragraph>
       <Paragraph>
@@ -42,22 +42,47 @@ function HomeContent() {
         e brindare insieme a chi ha reso possibile tutto questo: anche{" "}
         <em>a te</em>.
       </Paragraph>
-
       <Spacer size={24} line point />
-      <Heading component="h2">Sarà un viaggio di sapori</Heading>
+      <HeaderImage />
+      <Spacer size={48} />
+      <Heading component="h2">Sarà un viaggio nel gusto</Heading>
       <Heading component="h3">
         dall&apos;<em>Alto Adige</em> alla <em>Sicilia</em>
       </Heading>
       <Spacer size={24} />
       <Paragraph>
-        Verrai guidato in un curato percorso gastronomico che attraversa
+        Durante la serata potrai degustare l'eccellenza di due grandi cantine
+      </Paragraph>
+      <WineList />
+      <Spacer size={24} />
+      <Paragraph>
+        e un ricco percorso gastronomico curato in ogni dettaglio da
+      </Paragraph>
+      <Container>
+        <div className="centered">
+            <a
+                href="https://pazzesco.catering"
+                hrefLang="it"
+                rel="nofollow noopener noreferrer"
+                target="_blank"
+                aria-label="Visita il sito di Pazzesco Catering"
+                >
+                <Image
+                  src="/pazzesco-logo.svg"
+                  width={280}
+                  height={80}
+                  alt="Logo di Pazzasco Catersing"
+                  priority
+                  />
+              </a>
+          </div>
+      </Container>
+      <Spacer size={24} />
+      <Paragraph>
+        che attraverserà
         l&apos;Italia, unendo il carattere dell&apos;Alto Adige ai profumi intensi della
         Sicilia.
       </Paragraph>
-      <Paragraph>
-        Durante la serata potrai degustare le eccellenze di due grandi cantine
-      </Paragraph>
-      <WineList />
       <Paragraph>
         Il tutto accompagnato da musica, sorrisi e la compagnia di amici,
         colleghi e partner che hanno condiviso con noi questo viaggio.
