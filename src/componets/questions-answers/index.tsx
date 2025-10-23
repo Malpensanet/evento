@@ -17,7 +17,7 @@ const faqs = [
   {
     question: "A che ora?",
     answer:
-      "Potrai accedere liberamente dalle 18:00 alle 22:00 per tutto il tempo che vuoi.",
+      "Potrai accedere liberamente dalle 18:00 alle 22:00 e rimanere con noi per tutto il tempo che vorrai.",
   },
 ];
 
