@@ -159,16 +159,26 @@ const KurtatschContent = () => {
         <Spacer size={32} line point />
         <Spacer size={16} />
         <Container scope="lg">
+          <div
+            style={{
+              position: "relative",
+              width: "100%",
+              aspectRatio: "800/533",
+            }}
+          >
           <Image
             src="/cantina-kurtatsch.webp"
             alt="foto della cantina Kurtatsch"
-            width={800}
-            height={533}
+            fill
             priority
             loading="eager"
             placeholder="blur"
             blurDataURL="/cantina-kurtatsch-blur.webp"
-          />
+            style={{
+                objectFit: "cover",
+              }}
+            />
+          </div>
         </Container>
         <Spacer size={40} />
         <Heading component="h2">La Cantina</Heading>
