@@ -17,11 +17,11 @@ const wines = {
     background: "/amos-vineyard.webp",
     title: "Amos",
     description:
-      "Questo cuvée bianco rappresenta la vetta qualitativa dei bianchi della Cantina: è espressione più pura delle altitudini elevate e della freschezza di montagna.",
+      "Questo cuvée bianco è espressione più pura delle altitudini elevate e della freschezza di montagna.",
     typology:
       "Cuvée Bianco Alto Adige DOC, ottenuto dalle migliori uve bianche provenienti dai vigneti situati tra i 600 e 900 m di altitudine. Base di varietà Borgogna (70%) — Pinot Bianco, Chardonnay, Pinot Grigio — con aggiunta di Riesling e Sauvignon.",
     senses:
-      "Naso di pesca bianca, albicocca, fiori e agrumi; al palato freschezza, verticalità ed eleganza. Un bianco complesso ma cristallino, la montagna in bottiglia.",
+      "Naso di pesca bianca, albicocca, fiori e agrumi; al palato freschezza, verticalità ed eleganza. Un bianco complesso ma cristallino, la montagna in bottiglia del tastting",
   },
 
   pinotBianco: {
@@ -29,7 +29,7 @@ const wines = {
     background: "/pinot-bianco-vineyard.webp",
     title: "Il Pinot Bianco",
     description:
-      "Il Pinot Bianco è emblema della purezza e della precisione enologica altoatesina, rappresentando il bianco essenziale e classico della Cantina.",
+      "Il Pinot Bianco è emblema della purezza e della precisione enologica altoatesina, rappresentando un vino essenziale e un classico del territorio.",
     typology:
       "Pinot Bianco Alto Adige DOC proveniente da vigneti su terreni calcarei e argillosi, situati in zone fresche di pendio.",
     senses:
@@ -53,11 +53,11 @@ const wines = {
     background: "/soma-vineyard.webp",
     title: "Soma",
     description:
-      "Soma è il rosso più intenso e strutturato della Cantina: un blend deciso che unisce potenza e finezza, frutto delle zone più calde in Alto Adige.",
+      "Soma rappresenta la parte più calda del territorio, sia per altitudine che per tipologia. Kurtatsch dimostra come in Alto Adige si può fare un rosso corposo, mediterraneo nello spirito, ma di montagna nella sua eleganza.",
     typology:
       "Alto Adige Merlot-Cabernet DOC: 60% Merlot, 30% Cabernet Franc, 10% Cabernet Sauvignon. Vigneti a 220–250 m, esposizione sud-est, terreni sabbiosi/limosi con dolomite e minerali argillosi.",
     senses:
-      "Colore rubino intenso; aromi di ciliegia, mora e prugna. Al palato pieno, con tannini presenti e struttura adatta a lungo affinamento. Un rosso mediterraneo nello spirito, ma di montagna nella sua eleganza.",
+      "Colore rubino intenso; aromi di ciliegia, mora e prugna. Al palato pieno, con tannini presenti e struttura adatta a lungo affinamento.",
   },
 
   ushas: {
@@ -65,11 +65,11 @@ const wines = {
     background: "/ushas-vineyard.webp",
     title: "Ushas",
     description:
-      "Ushas è il gioiello raro della Cantina: un Moscato Rosa in versione dolce e luminosa, simbolo di rinascita e purezza.",
+      "Ushas è un vero gioiello della Cantina: un vino raro, elegante e sofisticato. Un moscato luminoso che ci parla di altitudini, forti pendenze, basse rese e grande cura.",
     typology:
-      "Mitterberg Moscato Rosa IGT (Alto Adige), vitigno rarissimo coltivato su terreni sabbiosi-ghiaiosi ricchi di dolomite, a 400–500 m di altitudine e forte pendenza.",
+      "Mitterberg Moscato Rosa IGT, vitigno rarissimo (solo 10 ettari in Alto Adige) coltivato su terreni sabbiosi-ghiaiosi ricchi di dolomite, a 400–500 m di altitudine, esposizione sud-est e forte pendenza.",
     senses:
-      "Profumi di petali di rosa secchi, fragole candite e spezie orientali; al palato dolcezza equilibrata da acidità viva e struttura tannica. Il grande dessert della cantina, elegante e sofisticato.",
+      "Profumi di petali di rosa secchi, fragole candite e spezie orientali; al palato dolcezza equilibrata da acidità viva e struttura tannica. Il grande dessert della cantina.",
   },
 };
 
