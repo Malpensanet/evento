@@ -13,7 +13,7 @@ export async function POST(req: Request) {
 
     // Environment variables check
     const brevoApiKey = process.env.BREVO_API_KEY;
-    const brevoListId = process.env.BREVO_LIST_ID; // Lista di partenza #11
+    const brevoListId = process.env.BREVO_LIST_ID;
 
     if (!brevoApiKey || !brevoListId) {
       console.error("❌ Missing Brevo environment variables");

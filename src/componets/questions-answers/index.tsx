@@ -6,8 +6,7 @@ import Spacer from "../spacer";
 const faqs = [
   {
     question: "Quando si terrà l'evento?",
-    answer:
-      "L'evento avrà luogo giovedì 27 novembre 2025.",
+    answer: "L'evento avrà luogo giovedì 27 novembre 2025.",
   },
   {
     question: "Dove si svolge?",

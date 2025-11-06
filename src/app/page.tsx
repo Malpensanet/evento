@@ -79,7 +79,9 @@ function HomeContent() {
           </a>
         </div>
         <div className="centered">
-          <span className="subtitleItem"><strong>Catering</strong></span>
+          <span className="subtitleItem">
+            <strong>Catering</strong>
+          </span>
         </div>
       </Container>
       <Spacer size={24} />
