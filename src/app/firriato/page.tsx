@@ -91,7 +91,7 @@ const FirriatoContent = () => {
         <Paragraph>
           Avere <strong>Firriato</strong> con noi significa concedersi un
           viaggio lungo la Sicilia autentica: dalla viticoltura eroica di
-          montagna a quella del mare, fino ai dolci pendii dell’Agro Trapanese
+          montagna a quella del mare, fino ai dolci pendii dell’Agro Trapanese.
         </Paragraph>
         <Paragraph>
           La produzione di Firriato porta con sé l’anima vibrante e complessa di
@@ -174,7 +174,7 @@ const FirriatoContent = () => {
         </Container>
         <Spacer size={40} />
         <Heading component="h2">La Cantina</Heading>
-        <Heading component="h3">Una azienda visionaria</Heading>
+        <Heading component="h3">Un’azienda visionaria</Heading>
         <Spacer size={24} />
         <Paragraph>
           Fondata alla fine degli anni ’70 da Salvatore Di Gaetano, insieme alla
@@ -210,7 +210,7 @@ const FirriatoContent = () => {
           La nostra ospite: Francesca Masako Matsumura
         </Heading>
         <Heading component="h3">
-          Area Sales Manager della cantina Firriato
+          Area Sales Manager di Cantine Firriato
         </Heading>
         <Spacer />
         <Paragraph>
