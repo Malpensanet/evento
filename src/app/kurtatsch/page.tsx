@@ -104,7 +104,8 @@ const KurtatschContent = () => {
           è con immenso piacere che ti presentiamo la nostra prima ospite per la
           serata di giovedì 27 novembre. Non si tratta solo di una grande
           cantina, ma di una realtà autentica, così come le persone che ne fanno
-          parte: <strong>la cantina Kurtatsch</strong> con cui collaboriamo da anni.
+          parte: <strong>la cantina Kurtatsch</strong> con cui collaboriamo da
+          anni.
         </Paragraph>
         <Spacer size={24} line point />
         <Spacer size={16} />
@@ -166,15 +167,15 @@ const KurtatschContent = () => {
               aspectRatio: "800/533",
             }}
           >
-          <Image
-            src="/cantina-kurtatsch.webp"
-            alt="foto della cantina Kurtatsch"
-            fill
-            priority
-            loading="eager"
-            placeholder="blur"
-            blurDataURL="/cantina-kurtatsch-blur.webp"
-            style={{
+            <Image
+              src="/cantina-kurtatsch.webp"
+              alt="foto della cantina Kurtatsch"
+              fill
+              priority
+              loading="eager"
+              placeholder="blur"
+              blurDataURL="/cantina-kurtatsch-blur.webp"
+              style={{
                 objectFit: "cover",
               }}
             />
@@ -194,10 +195,11 @@ const KurtatschContent = () => {
         </Paragraph>
         <Paragraph>
           Ogni vino è il frutto di un microclima preciso, di un versante ben
-          definito, di una scelta consapevole. Kurtatsch non produce semplicemente vini —
-          produce <em>luoghi in bottiglia</em>. Ogni etichetta è un racconto del
-          dialogo costante tra l&apos;uomo e la montagna, tra tradizione e
-          ricerca, tra passato e futuro. In una parola: purezza.
+          definito, di una scelta consapevole. Kurtatsch non produce
+          semplicemente vini — produce <em>luoghi in bottiglia</em>. Ogni
+          etichetta è un racconto del dialogo costante tra l&apos;uomo e la
+          montagna, tra tradizione e ricerca, tra passato e futuro. In una
+          parola: purezza.
         </Paragraph>
       </section>
       <section>
@@ -289,12 +291,14 @@ const DisplayFalse = ({ name = "" }: { name?: string }) => {
 // Main page component with Suspense boundary
 export default function KurtatschPage() {
   return (
-    <Suspense fallback={
-      <div>
-        <Spacer size={40} />
-        <Paragraph>Caricamento...</Paragraph>
-      </div>
-    }>
+    <Suspense
+      fallback={
+        <div>
+          <Spacer size={40} />
+          <Paragraph>Caricamento...</Paragraph>
+        </div>
+      }
+    >
       <KurtatschContent />
     </Suspense>
   );
